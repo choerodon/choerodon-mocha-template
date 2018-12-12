@@ -59,3 +59,17 @@ typings/
 
 # next.js build output
 .next
+
+# Mac OS
+.DS_Store
+
+# IDE
+.idea
+.project
+.lock.json
+*lock
+.vscode
+
+# folder
+dist
+mochawesome-report

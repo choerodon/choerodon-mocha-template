@@ -1,1 +1,3 @@
-# choerodon-mocha-template
+# {{service.code}}
+
+This is a choerodon mocha template.

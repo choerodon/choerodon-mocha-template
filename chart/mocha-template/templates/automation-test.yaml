@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: automation-test-{{ .Release.Name }}
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: {{ .Values.job.activeDeadlineSeconds }}
+  template:
+    metadata:
+      name: automation-test-{{ .Release.Name }}
+    spec:
+      containers:
+      - name: automation-test-{{ .Release.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        {{- range $name, $value := .Values.env.open }}
+        {{- if not (empty $value) }}
+        - name: {{ $name | quote }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        - name: RELEASENAME
+          value: {{ .Release.Name }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+      restartPolicy: Never
