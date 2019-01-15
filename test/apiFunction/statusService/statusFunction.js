@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 const statusFunction = {
 
   /**
-   * 查询状态列表
+   * 查询自身状态
    *
    * @returns
    */
@@ -21,12 +21,8 @@ const statusFunction = {
       .set('Content-Type', 'application/json')
       .then((res) => {
         res.should.have.status(200);
-
         return res;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      });      
   },
 };
 
