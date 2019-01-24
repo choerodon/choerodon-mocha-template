@@ -85,8 +85,7 @@ function login(reqBody, msg) {
     throw new Error('reqBody格式错误，必须包含username以及加密过的password!');
   }
   reqBody.password = encode(reqBody.password);
-  const authorize = '/oauth/oauth/authorize?scope=default&redirect_uri=http://' +
-    'api.staging.saas.hand-china.com&response_type=token&realm=default&state=client&client_id=client';
+  const authorize = '/oauth/oauth/authorize?scope=default&redirect_uri=https://choerodon.io&response_type=token&realm=default&state=client&client_id=client';
   return chai.request(utils.apiGateway)
     .get(authorize)
     .redirects(0)
